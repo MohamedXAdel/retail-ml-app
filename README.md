@@ -1,6 +1,6 @@
 # Online Retail Customer Segmentation ML Web App
 
-**Live Demo**: [https://retail-ml-app-production.up.railway.app/predict]
+**Live Demo**: [[https://retail-ml-app-production.up.railway.app/predict](https://retail-ml-app-production.up.railway.app/)]
 
 ---
 
