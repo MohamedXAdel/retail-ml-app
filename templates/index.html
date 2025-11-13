@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Segmentation ML Model</h1>
+        <p>Predict customer segment using <strong>Recency, Frequency, Monetary</strong></p>
+
+        <form method="post" action="/predict">
+            <div class="input-group">
+                <label>Recency (days since last purchase)</label>
+                <input type="number" name="recency" step="0.1" min="0" required placeholder="e.g. 30">
+            </div>
+            <div class="input-group">
+                <label>Frequency (number of purchases)</label>
+                <input type="number" name="frequency" min="1" required placeholder="e.g. 5">
+            </div>
+            <div class="input-group">
+                <label>Monetary (total spent $)</label>
+                <input type="number" name="monetary" step="0.01" min="0" required placeholder="e.g. 1500">
+            </div>
+            <button type="submit">Predict Segment</button>
+        </form>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if prediction %}
+        <div class="result">
+            <h2>Prediction Result</h2>
+            <p><strong>Recency:</strong> {{ recency }} days</p>
+            <p><strong>Frequency:</strong> {{ frequency }} purchases</p>
+            <p><strong>Monetary:</strong> ${{ monetary | round(2) }}</p>
+            <div class="segment">
+                <strong>Segment:</strong> 
+                <span class="badge cluster-{{ cluster }}">{{ segment }}</span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
